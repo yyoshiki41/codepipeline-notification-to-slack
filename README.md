@@ -1,16 +1,16 @@
-# AWS Lambda function to notify codedeploy events to slack
+# AWS Lambda function to notify codepipeline events to slack
 
-AWS Serverless Application: CodeDeploy notification to slack
+AWS Serverless Application: CodePipeline notification to slack
 
 ## Design
 
-1. CodeDeploy send event notification to Amazon SNS
+1. CodePipeline send event notification to Amazon SNS
 2. Invoking AWS Lambda functions via Amazon SNS
 3. Post to slack
 
 ## Resources
 
-- CodeDeploy
+- CodePipeline
 - SNS Topic
 - KMS
 - lambda (python3.7)
@@ -20,12 +20,12 @@ AWS Serverless Application: CodeDeploy notification to slack
 ### 1. Create a SNS Topic
 
 ```bash
-$ aws sns create-topic --name codedeploy
+$ aws sns create-topic --name codepipeline
 ```
 
 ### 2. SES Notification configuration
 
-Select a destination type, and then choose above SNS Topic in CodeDeploy application.
+Select a destination type, and then choose above SNS Topic in CodePipeline application.
 
 ### 3. Create a customer managed CMK.
 
