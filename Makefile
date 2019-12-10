@@ -7,11 +7,11 @@ package:
 	sam package --template-file template.yaml \
 		--output-template-file packaged.yaml \
 		--s3-bucket $(S3_BUCKET) \
-		--s3-prefix codedeploy-notification-to-slack
+		--s3-prefix codepipeline-notification-to-slack
 
 deploy: package
 	sam deploy --template-file packaged.yaml \
-		--stack-name sam-app-codedeploy-notification-to-slack \
+		--stack-name sam-app-codepipeline-notification-to-slack \
 		--capabilities CAPABILITY_IAM \
 		--parameter-overrides \
 		SNSTopicArn=$(SNS_TOPIC_ARN) \
