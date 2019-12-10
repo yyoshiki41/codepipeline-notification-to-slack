@@ -23,22 +23,28 @@ def lambda_handler(event, context):
     print("Received event: " + json.dumps(event, indent=2))
     message = event['Records'][0]['Sns']['Message']
     print("From SNS: " + message)
+    # subject = event['Records'][0]['Sns']['Subject']
 
-    subject = event['Records'][0]['Sns']['Subject']
     messageDict = json.loads(message)
-    applicationName = messageDict['applicationName']
-    deploymentId = messageDict['deploymentId']
-    deploymentGroupName = messageDict['deploymentGroupName']
-    createTime = messageDict['createTime']
-    completeTime = messageDict['completeTime']
-    status = messageDict['status']
+    region = messageDict['region']
+    detailType = messageDict['detailType']
+    pipelineName = messageDict['detail']['pipeline']
+    executionId = messageDict["detail"]["execution-id"]
+    version = messageDict["detail"]["version"]
 
-    if status == 'FAILED':
+    # Skip CodePipeline Pipeline Execution State Change
+    if 'stage' not in messageDict['detail']:
+        logger.info("a stage key does not exist in message.detail")
+        return
+    stageName = messageDict['detail']['stage']
+
+    state = messageDict['detail']['state']
+    if state == 'FAILED':
         slackColor = 'danger'
-        slackValue = messageDict['errorInformation']
+        slackValue = messageDict['detail']['errorInformation']
     else:
         slackColor = 'good'
-        slackValue = messageDict['status']
+        slackValue = messageDict['detail']['state']
 
     slack_message = {
         'channel': SLACK_CHANNEL,
@@ -46,26 +52,26 @@ def lambda_handler(event, context):
             {
                 'fallback': 'Required plain-text summary of the attachment.',
                 'color': slackColor,
-                'title': subject,
+                'title': detailType,
                 'fields': [
                     {
-                        'title': 'status',
-                        'value': status,
+                        'title': 'pipeline',
+                        'value': pipelineName,
                         'short': True
                     },
                     {
-                        'title': 'deploymentId',
-                        'value': deploymentId,
+                        'title': 'executionId',
+                        'value': executionId,
                         'short': True
                     },
                     {
-                        'title': 'applicationName',
-                        'value': applicationName,
+                        'title': 'stage',
+                        'value': stageName,
                         'short': True
                     },
                     {
-                        'title': 'deploymentGroupName',
-                        'value': deploymentGroupName,
+                        'title': 'state',
+                        'value': state,
                         'short': True
                     }
                 ]

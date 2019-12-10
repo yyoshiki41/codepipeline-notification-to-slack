@@ -23,9 +23,9 @@ AWS Serverless Application: CodePipeline notification to slack
 $ aws sns create-topic --name codepipeline
 ```
 
-### 2. SES Notification configuration
+### 2. Create notification rule in CodePipeline application.
 
-Select a destination type, and then choose above SNS Topic in CodePipeline application.
+Select events that trigger notifications, and then choose above SNS Topic as targets.
 
 ### 3. Create a customer managed CMK.
 
