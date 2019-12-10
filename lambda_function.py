@@ -32,12 +32,6 @@ def lambda_handler(event, context):
     executionId = messageDict["detail"]["execution-id"]
     version = messageDict["detail"]["version"]
 
-    # Skip CodePipeline Pipeline Execution State Change
-    if 'stage' not in messageDict['detail']:
-        logger.info("a stage key does not exist in message.detail")
-        return
-    stageName = messageDict['detail']['stage']
-
     state = messageDict['detail']['state']
     if state == 'FAILED':
         slackColor = 'danger'
@@ -65,8 +59,8 @@ def lambda_handler(event, context):
                         'short': True
                     },
                     {
-                        'title': 'stage',
-                        'value': stageName,
+                        'title': 'version',
+                        'value': version,
                         'short': True
                     },
                     {
@@ -78,6 +72,9 @@ def lambda_handler(event, context):
             }
         ]
     }
+    if 'stage' in messageDict['detail']:
+        slack_message['attachments'][0]['fields'].append(
+            { "title": "stage", "value": messageDict['detail']['stage'], "short": True })
 
     req = Request(HOOK_URL, json.dumps(slack_message).encode('utf-8'))
     try:
