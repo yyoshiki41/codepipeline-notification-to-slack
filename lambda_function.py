@@ -20,9 +20,9 @@ logger.setLevel(logging.INFO)
 
 
 def lambda_handler(event, context):
-    print("Received event: " + json.dumps(event, indent=2))
+    logger.info("Received event: " + json.dumps(event))
     message = event['Records'][0]['Sns']['Message']
-    print("From SNS: " + message)
+    logger.info("From SNS: " + message)
     # subject = event['Records'][0]['Sns']['Subject']
 
     messageDict = json.loads(message)
@@ -35,10 +35,8 @@ def lambda_handler(event, context):
     state = messageDict['detail']['state']
     if state == 'FAILED':
         slackColor = 'danger'
-        slackValue = messageDict['detail']['errorInformation']
     else:
         slackColor = 'good'
-        slackValue = messageDict['detail']['state']
 
     slack_message = {
         'channel': SLACK_CHANNEL,
