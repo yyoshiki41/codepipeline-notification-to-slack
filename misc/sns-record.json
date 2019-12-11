@@ -1,0 +1,22 @@
+{
+  "Records": [
+    {
+      "EventSource": "aws:sns",
+      "EventVersion": "1.0",
+      "EventSubscriptionArn": "arn:aws:sns:ap-northeast-1:335824664834:codepipeline-stage-web:83006b30-9517-4592-9d3b-8c1bd85d77c2",
+      "Sns": {
+        "Type": "Notification",
+        "MessageId": "d785d2b7-9a96-512e-8633-84dd0859801d",
+        "TopicArn": "arn:aws:sns:ap-northeast-1:335824664834:codepipeline-stage-web",
+        "Subject": null,
+        "Message": "{\"account\":\"335824664834\",\"detailType\":\"CodePipeline Stage Execution State Change\",\"region\":\"ap-northeast-1\",\"source\":\"aws.codepipeline\",\"time\":\"2019-12-11T06:45:29Z\",\"notificationRuleArn\":\"arn:aws:codestar-notifications:ap-northeast-1:335824664834:notificationrule/7e779bfb4f0e005f87107b25b67659b0cbd09bcd\",\"detail\":{\"pipeline\":\"stage-web\",\"execution-id\":\"4ca20fce-8237-4637-be96-3e4131d88da0\",\"state\":\"SUCCEEDED\",\"stage\":\"Source\",\"version\":11.0},\"resources\":[\"arn:aws:codepipeline:ap-northeast-1:335824664834:stage-web\"],\"additionalAttributes\":{}}",
+        "Timestamp": "2019-12-11T06:45:35.937Z",
+        "SignatureVersion": "1",
+        "Signature": "djrcxQvEVlMRW59pUZ8BtRWzAjSZNwNOdFmrTXu9UPM392Lyn9oKA2DWp2nYmY71yfDdQwqIiHyZPg5dcDxlqbipKyKQK1wMxMMAZ7aPAb+xqIjS6oOwGYb3SId8XeZscRQ9xfNmuPgF4UXxbg+8YuAGVM18yfM3GQTbmFHBM2/pXB2TShTqGcJLnwjA0CffFLkEE8ZjLUrlaK2/oiWqexCbdFpAbvQB9kerYz92+ShFkLIkMatw+s9Tr+zBuB2325u5e1QTmGpaltvdCpSUgLQLFu/4XCd3TtUW3wiqeh6lxY5hKeZBxEF7Vkjsmr/Lc0+kRLQ9u3m4Fe73JWr9UA==",
+        "SigningCertUrl": "https://sns.ap-northeast-1.amazonaws.com/SimpleNotificationService-6aad65c2f9911b05cd53efda11f913f9.pem",
+        "UnsubscribeUrl": "https://sns.ap-northeast-1.amazonaws.com/?Action=Unsubscribe&SubscriptionArn=arn:aws:sns:ap-northeast-1:335824664834:codepipeline-stage-web:83006b30-9517-4592-9d3b-8c1bd85d77c2",
+        "MessageAttributes": {}
+      }
+    }
+  ]
+}
