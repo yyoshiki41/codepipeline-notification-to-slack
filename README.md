@@ -71,3 +71,7 @@ make deploy
   slack channel
 - `KMS_ENCRYPTED_HOOK_URL`
   encrypted slack webhook url using CMK
+
+## Related Projects
+
+- [CodeDeploy notification to slack](https://github.com/yyoshiki41/codedeploy-notification-to-slack)
